@@ -33,9 +33,12 @@ class UnionFind:
 
     def find(self, p):
         assert 0 <= p < self.count
-        while p != self.parent[p]:
-            p = self.parent[self.parent[p]]
-        return p
+        # while p != self.parent[p]:
+        #     p = self.parent[self.parent[p]]
+        # return p
+        if p != self.parent[p]:
+            self.parent[p] = self.find(self.parent[p])
+        return self.parent[p]
 
     def is_connected(self, p, q):
         return self.find(p) == self.find(q)
@@ -54,12 +57,3 @@ class UnionFind:
         else:
             self.parent[p_root] = q_root
             self.rank[q_root] += 1
-
-
-test = UnionFind(10)
-test.union(1, 8)
-test.union(3, 9)
-test.union(7, 8)
-test.union(1, 9)
-print(test.parent)
-print(test.is_connected(1, 7))
