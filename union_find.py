@@ -29,6 +29,7 @@ class UnionFind:
     def __init__(self, n):
         self.count = n
         self.parent = [x for x in range(n)]
+        self.rank = [1 for x in range(n)]  # rank[i] 表示以 i 为根的集合所表示的树的层数
 
     def find(self, p):
         assert 0 <= p < self.count
@@ -46,4 +47,10 @@ class UnionFind:
         if p_root == q_root:
             return
 
-        self.parent[p_root] = q_root
+        if self.rank[p_root] < self.rank[q_root]:
+            self.parent[p_root] = q_root
+        elif self.rank[p_root] > self.rank[q_root]:
+            self.parent[q_root] = p_root
+        else:
+            self.parent[p_root] = q_root
+            self.rank[q_root] += 1
