@@ -3,8 +3,11 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        none_zeroes_list = list(filter(lambda x: x != 0, nums))
-        for i in range(len(none_zeroes_list)):
-            nums[i] = none_zeroes_list[i]
-        for i in range(len(none_zeroes_list), len(nums)):
+        k = 0  # nums 中,[0...k)的元素均为非 0 元素
+        # 遍历到第 i 个元素后,保证[0...i]中所有非 0 元素都按序排列在[0...k)中
+        for i in range(len(nums)):
+            if nums[i]:
+                nums[k] = nums[i]
+                k += 1
+        for i in range(k, len(nums)):
             nums[i] = 0
