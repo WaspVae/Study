@@ -1,4 +1,5 @@
 class Solution:
+    # 两种解法均可适用于通解
     def remove_duplicates(self, nums):
         k = 0  # nums 中,[0...k)的元素均为满足要求的元素
         for item in nums:
@@ -18,5 +19,4 @@ class Solution:
         #     if nums[sp - 1] != nums[fp]:
         #         sp += 1
         #         nums[sp] = nums[fp]
-        #         fp += 1
         # return sp + 1
