@@ -2,10 +2,10 @@ class Solution:
     # 两种解法均可适用于通解
     def remove_duplicates(self, nums):
         k = 0  # nums 中,[0...k)的元素均为满足要求的元素
-        for item in nums:
+        for i in range(len(nums)):
             # 一直维护 k 的值,使[0...k)的元素均为满足要求的元素
-            if k < 2 or item != nums[k - 2]:
-                nums[k] = item
+            if k < 2 or nums[i] != nums[k - 2]:
+                nums[k] = nums[i]
                 k += 1
         return k
 
