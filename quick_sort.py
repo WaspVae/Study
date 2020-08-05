@@ -73,6 +73,8 @@ def partition_two_ways(arr, l, r):
             i += 1
         while arr[j] > v and j >= l + 1:
             j -= 1
+        if i > j:
+            break
         swaps(arr, i, j)
         i += 1
         j -= 1
