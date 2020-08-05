@@ -22,15 +22,24 @@ class Solution:
         i = l + 1
         j = r
         while i <= j:
-            while i <= r and nums[i] < v:
+            # while i <= r and nums[i] < v:
+            #     i += 1
+            # while j >= l + 1 and nums[j] > v:
+            #     j -= 1
+            # if i > j:
+            #     break
+            # nums[i], nums[j] = nums[j], nums[i]
+            # i += 1
+            # j -= 1
+            if nums[i] < v:
                 i += 1
-            while j >= l + 1 and nums[j] > v:
+            elif nums[j] > v:
                 j -= 1
-            if i > j:
-                break
-            nums[i], nums[j] = nums[j], nums[i]
-            i += 1
-            j -= 1
+            else:
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
+                j -= 1
+
         nums[l], nums[j] = nums[j], nums[l]
         return j
 
