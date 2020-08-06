@@ -14,8 +14,3 @@ class Solution:
                 l += 1
             res = max(res, r - l + 1)
         return res
-
-
-test = Solution()
-s = 'babcdce'
-print(test.length_of_longest_substring(s))
