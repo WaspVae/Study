@@ -1,7 +1,8 @@
 class Solution:
     def valid_palindrome(self, s):
-        import re
-        s = ''.join(re.findall('[A-Za-z0-9]', s.lower()))
+        # import re
+        # s = ''.join(re.findall('[A-Za-z0-9]', s.lower()))
+        s = ''.join(filter(str.isalnum, s)).lower()
         if not len(s):
             return True
         i = 0
