@@ -27,7 +27,3 @@ class Solution:
         letters = self.letters_dict[digits[index]]
         for item in letters:
             self.find_combination(digits, index + 1, s + item)
-
-test = Solution()
-s = ""
-print(test.letter_combinations(s))
