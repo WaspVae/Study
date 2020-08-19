@@ -20,8 +20,14 @@ class Solution:
             return 0
         # memo[i] 表示考虑抢劫 nums[i...n-1]这个范围内的所有房子所能获得的最大收益
         memo = [-1] * n
-        memo[n-1] = nums[n-1]
-        for i in range(n-2, -1, -1):
-            for j in range(i, len(nums)):
-                memo[i] = max(memo[i], nums[j] + (memo[j + 2] if j + 2 < n else 0))
-        return max(memo)
+        # memo[n-1] = nums[n-1]
+        # for i in range(n-2, -1, -1):
+        #     for j in range(i, len(nums)):
+        #         memo[i] = max(memo[i], nums[j] + (memo[j + 2] if j + 2 < n else 0))
+        # return memo[0]
+        # memo[i] 表示考虑抢劫 nums[0...i]这个范围内的所有房子所能获得的最大收益
+        memo[0] = nums[0]
+        for i in range(1, n):
+            for j in range(i, -1, -1):
+                memo[i] = max(memo[i], nums[j] + (memo[j - 2] if j - 2 >= 0 else 0))
+        return memo[n - 1]
