@@ -23,18 +23,42 @@ class Solution:
         #     return res
         #
         # return best_value(w, v, n - 1, C)
+        # assert len(w) == len(v)
+        # n = len(w)
+        # if n == 0:
+        #     return 0
+        # memo = [[-1] * (C + 1) for i in range(n)]
+        # for j in range(C + 1):
+        #     memo[0][j] = v[0] if w[0] <= j else 0
+        # for i in range(1, n):
+        #     for j in range(C + 1):
+        #         memo[i][j] = memo[i - 1][j]
+        #         if w[i] <= j:
+        #             memo[i][j] = max(memo[i][j], v[i] + memo[i-1][j - w[i]])
+        # return memo[n-1][C]
+        # # 优化,由于第 i 行的结果参考第 n 行,因此只需开辟 O(2 * C) 的空间即可
+        # assert len(w) == len(v)
+        # n = len(w)
+        # if n == 0:
+        #     return 0
+        # memo = [[-1] * (C + 1), [-1] * (C + 1)]
+        # for j in range(C + 1):
+        #     memo[0][j] = v[0] if w[0] <= j else 0
+        # for i in range(1, n):
+        #     for j in range(C + 1):
+        #         memo[i % 2][j] = memo[(i - 1) % 2][j]
+        #         if w[i] <= j:
+        #             memo[i % 2][j] = max(memo[i % 2][j], v[i] + memo[(i - 1) % 2][j - w[i]])
+        # return memo[(n - 1) % 2][C]
+        # 优化,直接开辟 O(C) 空间即可
         assert len(w) == len(v)
         n = len(w)
         if n == 0:
             return 0
-        memo = [[-1] * (C + 1) for i in range(n)]
+        memo = [-1] * (C + 1)
         for j in range(C + 1):
-            memo[0][j] = v[0] if w[0] <= j else 0
+            memo[j] = v[0] if w[0] <= j else 0
         for i in range(1, n):
-            for j in range(C + 1):
-                memo[i][j] = memo[i - 1][j]
-                if w[i] <= j:
-                    memo[i][j] = max(memo[i][j], v[i] + memo[i-1][j - w[i]])
-        return memo[-1][-1]
-
-
+            for j in range(C, w[i] - 1, -1):
+                memo[j] = max(memo[j], v[i] + memo[j - w[i]])
+        return memo[C]
