@@ -1,6 +1,9 @@
 # 归并排序的 merge 操作
 class Solution:
     def merge_sorted_array(self, nums1, m, nums2, n):
+        # 取巧
+        # nums1[m:] = nums2
+        # nums1.sort()
         # 时间复杂度: O(n + m)
         # 空间复杂度: O(m)
         # nums1_copy = nums1[:m]
