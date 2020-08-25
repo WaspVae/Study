@@ -18,6 +18,9 @@ class Solution:
                 r = p - 1
 
     def partition(self, nums, l, r):
+        from random import randint
+        randint_index = randint(l, r)
+        nums[randint_index], nums[l] = nums[l], nums[randint_index]
         v = nums[l]
         i = l + 1
         j = r
