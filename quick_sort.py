@@ -101,12 +101,12 @@ def partition_three_ways(arr, l, r):
     i = l + 1
     while i < gt:
         if arr[i] < v:
-            swaps(arr, i, lt)
             i += 1
+            swaps(arr, i, lt)
             lt += 1
         elif arr[i] > v:
-            swaps(arr, i, gt - 1)
             gt -= 1
+            swaps(arr, i, gt)
         else:
             i += 1
     swaps(arr, l, lt)
