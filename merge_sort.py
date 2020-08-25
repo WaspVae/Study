@@ -33,17 +33,34 @@ def merge_sort(arr):
 
 
 def merge(left, right):
-    result = []
-    while left and right:
-        if left[0] <= right[0]:
-            result.append(left.pop(0))
+    # result = []
+    # while left and right:
+    #     if left[0] <= right[0]:
+    #         result.append(left.pop(0))
+    #     else:
+    #         result.append(right.pop(0))
+    # if left:
+    #     result += left
+    # if right:
+    #     result += right
+    # return result
+    # 双指针
+    l = len(left)
+    r = len(right)
+    i = j = 0
+    res = []
+    while i < l and j < r:
+        if left[i] < right[j]:
+            res.append(left[i])
+            i += 1
         else:
-            result.append(right.pop(0))
-    if left:
-        result += left
-    if right:
-        result += right
-    return result
+            res.append(right[j])
+            j += 1
+    if i < l:
+        res.extend(left[i:])
+    if j < r:
+        res.extend(right[j:])
+    return res
 
 
 from genera_array import generate_random_array, generate_nearly_ordered_array, generate_random_repeat_array
